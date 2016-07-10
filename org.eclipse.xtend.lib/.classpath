@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src">
+	<classpathentry path="src" kind="src">
 		<attributes>
 			<attribute name="FROM_GRADLE_MODEL" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="xtend-gen">
+	<classpathentry path="xtend-gen" kind="src">
 		<attributes>
 			<attribute name="FROM_GRADLE_MODEL" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry path="org.eclipse.buildship.core.gradleclasspathcontainer" kind="con"/>
+	<classpathentry path="bin" kind="output"/>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/" kind="con"/>
+	<classpathentry path="/org.eclipse.xtext.xbase.lib" kind="src"/>
+	<classpathentry path="/org.eclipse.xtend.lib.macro" kind="src"/>
+	<classpathentry path="C:/Users/abies/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/19.0-rc3/ffe5638f514e43ffb71163bbd453b1f9cc218426/guava-19.0-rc3.jar" kind="lib" sourcepath="C:/Users/abies/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/19.0-rc3/e3daf900ba8410397da90dd768c9419ae2ab3812/guava-19.0-rc3-sources.jar"/>
 </classpath>
