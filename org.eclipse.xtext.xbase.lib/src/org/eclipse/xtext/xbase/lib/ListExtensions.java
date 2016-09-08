@@ -7,6 +7,7 @@
  *******************************************************************************/
 package org.eclipse.xtext.xbase.lib;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -127,5 +128,26 @@ import com.google.common.collect.Lists;
 	public static <T, R> List<R> map(List<T> original, Function1<? super T, ? extends R> transformation) {
 		return Lists.transform(original, new FunctionDelegate<T, R>(transformation));
 	}
-
+	
+	/**
+	 * <p>
+	 * Concatenates two list into a single list. The returned list is a new list.
+	 * </p>
+	 * 
+	 * @param a
+	 *            the list. May not be <code>null</code>.
+	 * @param b
+	 *            the list. May not be <code>null</code>.
+	 * @return a combined (new) list. Never <code>null</code>.
+	 * 
+	 * @since 2.11
+	 */
+	@Pure
+	public static <T> List<T> operator_plus(List<? extends T> a, List<? extends T> b) {
+		List<T> result = new ArrayList<>(a.size() + b.size());
+		result.addAll(a);
+		result.addAll(b);
+		return result;
+	}
+	
 }
