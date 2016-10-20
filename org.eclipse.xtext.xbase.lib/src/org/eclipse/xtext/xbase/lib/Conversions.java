@@ -30,7 +30,7 @@ import com.google.common.primitives.Shorts;
  * 
  * @author Sebastian Zarnekow - Initial contribution and API
  * @author Sven Efftinge
- * @author dustContributor
+ * @author Facundo Etchezar - Initial implementation of the type-specific primitive array wrappers
  */
 @GwtIncompatible("reflection")
 public final class Conversions {
