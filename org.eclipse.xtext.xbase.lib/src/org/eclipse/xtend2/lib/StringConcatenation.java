@@ -168,7 +168,7 @@ public class StringConcatenation implements CharSequence {
 		if (object == null)
 			return;
 		if (object instanceof String) {
-			append((String)object,index);
+			append((String)object, indentation, index);
 		} else if (object instanceof StringConcatenation) {
 			StringConcatenation other = (StringConcatenation) object;
 			List<String> otherSegments = other.getSignificantContent();
@@ -178,7 +178,7 @@ public class StringConcatenation implements CharSequence {
 			other.appendTo(new IndentedTarget(this, indentation, index));
 		} else {
 			String value = getStringRepresentation(object);
-			append(value,index);
+			append(value, indentation, index);
 		}
 	}
 
@@ -189,6 +189,16 @@ public class StringConcatenation implements CharSequence {
 			appendSegments(index, newSegments, lineDelimiter);
 		} else {
 			appendSegment(index, value, lineDelimiter);
+		}
+	}
+
+	private void append(String value, String indentation, int index) {
+		int initial = initialSegmentSize(value);
+		if (initial != value.length()) {
+			List<String> newSegments = continueSplitting(value, initial, value.length());
+			appendSegments(indentation, index, newSegments, lineDelimiter);
+		} else {
+			appendSegment(indentation, index, value, lineDelimiter);
 		}
 	}
 
