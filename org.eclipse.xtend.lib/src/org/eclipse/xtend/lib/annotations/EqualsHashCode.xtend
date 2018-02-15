@@ -213,7 +213,7 @@ class EqualsHashCodeProcessor extends AbstractClassProcessor {
 				case Character.TYPE.name,
 				case Byte.TYPE.name,
 				case Short.TYPE.name:
-					'''this.«simpleName»;'''
+					'''this.«simpleName»'''
 				case Long.TYPE.name:
 					'''(int) (this.«simpleName» ^ (this.«simpleName» >>> 32))'''
 				default:

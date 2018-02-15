@@ -538,7 +538,6 @@ public class EqualsHashCodeProcessor extends AbstractClassProcessor {
               _builder.append("this.");
               String _simpleName = it.getSimpleName();
               _builder.append(_simpleName);
-              _builder.append(";");
             }
           };
           _switchResult = _client_3;
