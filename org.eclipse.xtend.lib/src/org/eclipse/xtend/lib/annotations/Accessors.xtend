@@ -147,7 +147,7 @@ class AccessorsProcessor implements TransformationParticipant<MutableMemberDecla
 			val annotation = accessorsAnnotation ?: declaringType.accessorsAnnotation
 			if (annotation !== null) {
 				val types = annotation.getEnumArrayValue("value").map[AccessorType.valueOf(simpleName)]
-				return types.findFirst[name.endsWith("GETTER")] ?: AccessorType.NONE
+				return types.findFirst[name !== null && name.endsWith("GETTER")] ?: AccessorType.NONE
 			}
 			return null;
 		}

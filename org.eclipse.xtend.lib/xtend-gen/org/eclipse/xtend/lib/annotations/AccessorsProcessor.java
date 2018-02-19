@@ -132,7 +132,7 @@ public class AccessorsProcessor implements TransformationParticipant<MutableMemb
         final List<AccessorType> types = ListExtensions.<EnumerationValueDeclaration, AccessorType>map(((List<EnumerationValueDeclaration>)Conversions.doWrapArray(annotation.getEnumArrayValue("value"))), _function);
         AccessorType _elvis_1 = null;
         final Function1<AccessorType, Boolean> _function_1 = (AccessorType it_1) -> {
-          return Boolean.valueOf(it_1.name().endsWith("GETTER"));
+          return Boolean.valueOf(((it_1.name() != null) && it_1.name().endsWith("GETTER")));
         };
         AccessorType _findFirst = IterableExtensions.<AccessorType>findFirst(types, _function_1);
         if (_findFirst != null) {
