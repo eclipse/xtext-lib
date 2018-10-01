@@ -8,10 +8,15 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'ISO-8859-1'
 }
 
+tasks.withType(Test) {
+	systemProperty 'file.encoding', 'ISO-8859-1'
+}
+
 tasks.withType(Javadoc) {
 	options.encoding = 'ISO-8859-1'
 	options.tags = [ 'noreference', 'noextend', 'noimplement', 'noinstantiate', 'nooverride', 'model', 'generated', 'ordered' ] 
 	options.addStringOption('Xdoclint:none', '-quiet')
+	failOnError = false
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
