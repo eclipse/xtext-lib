@@ -54,8 +54,7 @@
 		<jdtTool-version>1.2.101</jdtTool-version>
 		<junit-version>4.12</junit-version>
 		<junit5-version>5.1.0</junit5-version>
-		<log4j-version>1.2.16</log4j-version>
-		<!-- TODO why not 1.2.17? Master had 1.2.16 though -->
+		<log4j-version>1.2.17</log4j-version>
 		<!--
 			// When adjusting the `lsp4j` version here, do not forget to do the followings:
 			// - Update the version in `IdeProjectDescriptor#pom`.
