@@ -10,6 +10,7 @@ buildscript {
 	repositories.jcenter()
 	dependencies {
 		classpath "org.xtext:xtext-gradle-plugin:$versions.xtext_gradle_plugin"
+		classpath "io.spring.gradle:dependency-management-plugin:$versions.dependency_management_plugin"
 	}
 }
 
@@ -22,10 +23,17 @@ subprojects {
 	version = rootProject.version
 	
 	repositories {
+		mavenLocal()
 		jcenter()
 	}
 	
 	apply plugin: 'java'
+	apply plugin: "io.spring.dependency-management"
+	dependencyManagement {
+		imports {
+			mavenBom "org.eclipse.xtext:xtext-dev.bom:$project.version"
+		}
+	}
 	if (findProperty('compileXtend') == 'true') {
 		apply plugin: 'org.xtext.xtend'
 	}
