@@ -21,29 +21,13 @@ pipeline {
 			steps {
 				dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 				dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
-				sh '''
-					mvn \
-					  -f releng/org.eclipse.xtext.dev-bom \
-					  --batch-mode --update-snapshots \
-					  -Dmaven.repo.local=.m2/repository \
-					  -DJENKINS_URL=$JENKINS_URL \
-					  -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
-					  clean install
-				'''
+				sh './1-install-bom.sh'
 			}
 		}
 
 		stage('Gradle Build') {
 			steps {
-				sh '''
-					./gradlew clean cleanGenerateXtext build createLocalMavenRepo \
-					  -Dmaven.repo.local=$(pwd)/.m2/repository \
-					  -PcompileXtend=true \
-					  -PJENKINS_URL=$JENKINS_URL \
-					  -PignoreTestFailures=true \
-					  --refresh-dependencies \
-					  --continue
-				'''
+				sh './2-gradle-build.sh'
 				step([$class: 'JUnitResultArchiver', testResults: '**/build/test-results/test/*.xml'])
 			}
 		}
@@ -52,16 +36,7 @@ pipeline {
 			steps {
 				dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 				dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
-				sh '''
-					mvn \
-					  -f releng \
-					  --batch-mode \
-					  --update-snapshots \
-					  -Dmaven.repo.local=.m2/repository \
-					  -DJENKINS_URL=$JENKINS_URL \
-					  -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
-					  clean install
-				'''
+				sh './3-maven-build.sh'
 			}
 		}
 	}
