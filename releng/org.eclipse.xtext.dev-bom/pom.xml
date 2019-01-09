@@ -15,6 +15,7 @@
 		<!-- ======== -->
 		<!-- 3rd party -->
 		<antlr-runtime-version>3.2</antlr-runtime-version>
+		<args4j-version>2.33</args4j-version>
 		<asm-version>7.0</asm-version>
 		<guava-version>[14.0,22.0]</guava-version>
 		<guice-version>3.0</guice-version>
@@ -60,6 +61,11 @@
 		<dependencies>
 			<!-- sort order: group id / artifact id -->
 			<!-- 3rd party -->
+			<dependency>
+				<groupId>args4j</groupId>
+				<artifactId>args4j</artifactId>
+				<version>${args4j-version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
