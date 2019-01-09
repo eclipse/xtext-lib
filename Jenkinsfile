@@ -34,8 +34,6 @@ pipeline {
 		
 		stage('Maven Build') {
 			steps {
-				dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
-				dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
 				sh 'sh ./3-maven-build.sh'
 			}
 		}

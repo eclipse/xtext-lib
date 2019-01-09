@@ -1,3 +1,8 @@
+if [ -z "$JENKINS_URL" ]; then
+  # if not set in environment use default
+  JENKINS_URL=https://ci.eclipse.org/xtext/
+fi
+
 mvn \
   -f releng \
   --batch-mode \
