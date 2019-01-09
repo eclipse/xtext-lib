@@ -21,13 +21,13 @@ pipeline {
 			steps {
 				dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 				dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
-				sh './1-install-bom.sh'
+				sh 'sh ./1-install-bom.sh'
 			}
 		}
 
 		stage('Gradle Build') {
 			steps {
-				sh './2-gradle-build.sh'
+				sh 'sh ./2-gradle-build.sh'
 				step([$class: 'JUnitResultArchiver', testResults: '**/build/test-results/test/*.xml'])
 			}
 		}
@@ -36,7 +36,7 @@ pipeline {
 			steps {
 				dir('.m2/repository/org/eclipse/xtext') { deleteDir() }
 				dir('.m2/repository/org/eclipse/xtend') { deleteDir() }
-				sh './3-maven-build.sh'
+				sh 'sh ./3-maven-build.sh'
 			}
 		}
 	}
