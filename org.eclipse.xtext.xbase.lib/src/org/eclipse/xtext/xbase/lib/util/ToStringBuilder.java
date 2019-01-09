@@ -305,7 +305,7 @@ public final class ToStringBuilder {
 
 	@GwtIncompatible("java.lang.reflect.Field")
 	private List<Field> getAllDeclaredFields(final Class<?> clazz) {
-		final ArrayList<Field> result = new ArrayList();
+		final ArrayList<Field> result = new ArrayList<Field>();
 
 		for(Class<?> current = clazz; current != null; current = current.getSuperclass()) {
 			Field[] declaredFields = current.getDeclaredFields();
