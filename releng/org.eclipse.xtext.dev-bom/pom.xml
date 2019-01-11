@@ -107,54 +107,26 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit-version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>${log4j-version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>jmxtools</artifactId>
-						<groupId>com.sun.jdmk</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>jmxri</artifactId>
-						<groupId>com.sun.jmx</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>jms</artifactId>
-						<groupId>javax.jms</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>mail</artifactId>
-						<groupId>javax.mail</groupId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr-runtime</artifactId>
 				<version>${antlr-runtime-version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>stringtemplate</artifactId>
-						<groupId>org.antlr</groupId>
-					</exclusion>
-				</exclusions>
-				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-api</artifactId>
 				<version>${junit5-version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
 				<version>${junit5-version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.ow2.asm</groupId>
@@ -166,13 +138,11 @@
 				<groupId>org.eclipse.emf</groupId>
 				<artifactId>org.eclipse.emf.codegen</artifactId>
 				<version>${emf.codegen-version}</version>
-				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.emf</groupId>
 				<artifactId>org.eclipse.emf.codegen.ecore</artifactId>
 				<version>${emf.ecore-version}</version>
-				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.emf</groupId>
@@ -193,7 +163,6 @@
 				<groupId>org.eclipse.emf</groupId>
 				<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
 				<version>${emf.ecore-version}</version>
-				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.emf</groupId>
