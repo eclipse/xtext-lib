@@ -1,6 +1,8 @@
 /.m2/
 bin/
+target/
 build/
+target/
 .gradle/
 *._trace
 *.xtendbin

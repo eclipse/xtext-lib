@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.xtend.lib.tests
+Bundle-Name: Xtend Runtime Library Tests
+Bundle-Vendor: Eclipse Xtext
+Bundle-Version: 2.19.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.junit
+Automatic-Module-Name: org.eclipse.xtend.lib.macro

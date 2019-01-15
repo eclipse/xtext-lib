@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.eclipse.xtext</groupId>
+		<artifactId>org.eclipse.xtext.tycho.plugin.parent</artifactId>
+		<version>2.19.0-SNAPSHOT</version>
+		<relativePath>../../xtext-eclipse/releng/org.eclipse.xtext.tycho.plugin.parent</relativePath>
+	</parent>
+	<artifactId>org.eclipse.xtext.xbase.lib.gwt</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt</artifactId>
+				<version>2.8.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.xtext</groupId>
+			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>build/gwtSources</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src-super</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>OSGI-INF</targetPath>
+				<directory>OSGI-INF</directory>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>about.html</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>copy-super</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<ant antfile="gwtBuild.ant"
+									target="copy.gwt.compatible.sources">
+									<property name="source.folder"
+										value="src-super" />
+									<property name="target.folder"
+										value="build/gwtSources" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy-util</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<ant antfile="gwtBuild.ant"
+									target="copy.gwt.compatible.sources">
+									<property name="source.folder"
+										value="../org.eclipse.xtext.xbase.lib/src" />
+									<property name="target.folder"
+										value="build/gwtSources" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
