@@ -64,7 +64,7 @@ pipeline {
           color = '#FF0000'
         }
         
-        slackSend message: "${curResult}: <${env.BUILD_URL}|${env.JOB_NAME}#${env.BUILD_NUMBER} (${envName})>", baseUrl: 'https://itemis.slack.com/services/hooks/jenkins-ci/', botUser: true, channel: 'xtext-builds', color: '#00FFFF', token: '1vbkhv8Hwlp3ausuFGj1BdJb'
+        slackSend message: "${curResult}: <${env.BUILD_URL}|${env.JOB_NAME}#${env.BUILD_NUMBER}${envName}>", baseUrl: 'https://itemis.slack.com/services/hooks/jenkins-ci/', botUser: true, channel: 'xtext-builds', color: '#00FFFF', token: '1vbkhv8Hwlp3ausuFGj1BdJb'
       }
     }
   }
