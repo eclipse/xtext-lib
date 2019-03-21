@@ -317,6 +317,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static long[] unwrapArray(WrappedLongArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -333,6 +334,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static byte[] unwrapArray(WrappedByteArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -349,6 +351,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static char[] unwrapArray(WrappedCharacterArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -365,6 +368,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static double[] unwrapArray(WrappedDoubleArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -381,6 +385,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static boolean[] unwrapArray(WrappedBooleanArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -397,6 +402,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static float[] unwrapArray(WrappedFloatArray value) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -413,6 +419,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static Object unwrapArray(Object value) {
+		if(value==null)return null;
 		return unwrapArray(value, Object.class);
 	}
 
@@ -431,7 +438,8 @@ public final class Conversions {
 	 */
 	@Pure
 	public static <T,K extends T> Object unwrapArray(Iterable<K> value, Class<T> componentType) {
-
+		if(value==null)return null;
+		
 		// This is the generic object array check.
 		if (value instanceof WrappedArray<?>) {
 			K[] result = unwrapArray((WrappedArray<K>) value);
@@ -514,6 +522,7 @@ public final class Conversions {
 	 */
 	@Pure
 	public static <T> T[] unwrapArray(WrappedArray<T> value, Class<? super T> componentType) {
+		if(value==null)return null;
 		return value.internalToArray();
 	}
 
@@ -532,7 +541,8 @@ public final class Conversions {
 	 */
 	@Pure
 	public static <T> Object unwrapArray(Object value, Class<T> componentType) {
-
+		if(value==null)return null;
+		
 		if (!(value instanceof Iterable<?>)) {
 			// Nothing to unwrap.
 			// throw new IllegalArgumentException("Nothing to unwrap.");
