@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'xtext-build-pod'
+      label 'xtext-build-pod-experiemnts'
       defaultContainer 'xtext-buildenv'
       yaml '''
 apiVersion: v1
@@ -20,10 +20,10 @@ spec:
     resources:
       limits:
         memory: "2Gi"
-        cpu: "1"
+        cpu: "1.1"
       requests:
         memory: "2Gi"
-        cpu: "1"
+        cpu: "1.1"
     volumeMounts:
     - name: settings-xml
       mountPath: /home/jenkins/.m2/settings.xml
