@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'xtext-build-pod-experiemnts'
+      label 'xtext-build-pod-experiemnts2'
       defaultContainer 'xtext-buildenv'
       yaml '''
 apiVersion: v1
