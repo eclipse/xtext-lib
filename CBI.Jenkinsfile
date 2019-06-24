@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'xtext-build-pod-experiemnts' + env.BRANCH_NAME
+      label 'xtext-lib-build-pod-' + env.BRANCH_NAME
       defaultContainer 'xtext-buildenv'
       yaml '''
 apiVersion: v1
