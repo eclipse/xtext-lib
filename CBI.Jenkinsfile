@@ -20,10 +20,10 @@ spec:
     resources:
       limits:
         memory: "2Gi"
-        cpu: "1.1"
+        cpu: "1.2"
       requests:
         memory: "2Gi"
-        cpu: "1.1"
+        cpu: "1.2"
     volumeMounts:
     - name: settings-xml
       mountPath: /home/jenkins/.m2/settings.xml
