@@ -9,32 +9,42 @@
 		<relativePath>../../xtext-eclipse/releng/org.eclipse.xtext.tycho.tests.parent</relativePath>
 	</parent>
 	<artifactId>org.eclipse.xtext.xbase.lib.tests</artifactId>
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtend.lib.macro</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava-testlib</artifactId>
-		</dependency>
-	</dependencies>
+	<packaging>eclipse-test-plugin</packaging>
 	<build>
-		<testSourceDirectory>src</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<!--
+				Guava testlib is not a P2 plugin, so it does not have a MANIFEST.MF with exported packages.
+				Therefore, we need to put it as a raw jar on our classpath.
+				The maven-dependency-plugin allows to copy Jars from maven central into our local directory
+				tree. We put it into lib/guava-testlib.jar and have a configured bundle classpath that points
+				to this file. See MANIFEST.MF and build.properties.
+				-->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-libraries</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<item>
+									<groupId>com.google.guava</groupId>
+									<artifactId>guava-testlib</artifactId>
+								</item>
+							</artifactItems>
+							<outputDirectory>lib</outputDirectory>
+							<stripVersion>true</stripVersion>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
+	
 </project>
