@@ -45,7 +45,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>build/gwtSources</directory>
+				<directory>${project.build.directory}/gwtSources</directory>
 				<includes>
 					<include>**/*.java</include>
 				</includes>
@@ -75,7 +75,7 @@
 				<executions>
 					<execution>
 						<id>copy-super</id>
-						<phase>package</phase>
+						<phase>generate-resources</phase>
 						<configuration>
 							<target>
 								<ant antfile="gwtBuild.ant"
@@ -83,7 +83,7 @@
 									<property name="source.folder"
 										value="src-super" />
 									<property name="target.folder"
-										value="build/gwtSources" />
+										value="${project.build.directory}/gwtSources" />
 								</ant>
 							</target>
 						</configuration>
@@ -93,7 +93,7 @@
 					</execution>
 					<execution>
 						<id>copy-util</id>
-						<phase>package</phase>
+						<phase>generate-resources</phase>
 						<configuration>
 							<target>
 								<ant antfile="gwtBuild.ant"
@@ -101,7 +101,25 @@
 									<property name="source.folder"
 										value="../org.eclipse.xtext.xbase.lib/src" />
 									<property name="target.folder"
-										value="build/gwtSources" />
+										value="${project.build.directory}/gwtSources" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy-util-deprecated</id>
+						<phase>generate-resources</phase>
+						<configuration>
+							<target>
+								<ant antfile="gwtBuild.ant"
+									target="copy.gwt.compatible.sources">
+									<property name="source.folder"
+										value="../org.eclipse.xtext.xbase.lib/deprecated" />
+									<property name="target.folder"
+										value="${project.build.directory}/gwtSources" />
 								</ant>
 							</target>
 						</configuration>
