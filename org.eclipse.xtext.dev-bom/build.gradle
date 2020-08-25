@@ -15,7 +15,7 @@ dependencies {
         api "com.google.inject:guice:3.0"
         api "io.github.classgraph:classgraph:4.8.35"
         api "javax.annotation:javax.annotation-api:1.3.2"
-        api "junit:junit:4.12"
+        api "junit:junit:4.13"
         api "log4j:log4j:1.2.17"
         api "org.antlr:antlr-runtime:3.2"
         api "org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.20.0"
