@@ -11,6 +11,15 @@
 	<name>Tests for Eclipse Xbase Runtime Library</name>
 	<description>The runtime library for Xbase languages.</description>
 
+	<dependencies>
+		<!-- That's require to let maven-surefire-plugin
+		auto detect provider org.apache.maven.surefire.junit4.JUnit4Provider-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
