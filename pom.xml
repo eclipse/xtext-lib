@@ -174,8 +174,9 @@
 		<module>org.eclipse.xtext.xbase.lib.tests</module>
 		<module>org.eclipse.xtend.lib.macro</module>
 		<module>org.eclipse.xtend.lib</module>
-		<module>org.eclipse.xtend.lib.gwt</module>
 		<module>org.eclipse.xtend.lib.tests</module>
+		<module>org.eclipse.xtend.lib.gwt</module>
+		<module>org.eclipse.xtend.lib.gwt.test</module>
 	</modules>
 
 	<build>
