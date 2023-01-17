@@ -8,6 +8,7 @@
 		<version>2.30.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.xtext.xbase.lib.gwt</artifactId>
+	<packaging>eclipse-plugin</packaging>
 
 	<name>Eclipse Xbase GWT Library</name>
 	<description>The runtime library for the Xbase programming language.</description>

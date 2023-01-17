@@ -170,6 +170,7 @@
 	<modules>
 		<module>org.eclipse.xtext.dev-bom</module>
 		<module>org.eclipse.xtext.xbase.lib</module>
+		<module>org.eclipse.xtext.xbase.lib.gwt</module>
 		<module>org.eclipse.xtext.xbase.lib.tests</module>
 		<module>org.eclipse.xtend.lib.macro</module>
 		<module>org.eclipse.xtend.lib</module>
