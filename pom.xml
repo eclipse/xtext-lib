@@ -169,6 +169,7 @@
 
 	<modules>
 		<module>org.eclipse.xtext.dev-bom</module>
+		<module>org.eclipse.xtext.xbase.lib</module>
 	</modules>
 
 	<build>
