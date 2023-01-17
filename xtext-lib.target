@@ -1,14 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 <target name="xtext-lib" sequenceNumber="0">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/2023-03"/>
 			<unit id="com.google.guava" version="30.1.0.v20221112-0806"/>
+			<unit id="org.apache.log4j" version="1.2.24.v20221221-2012"/>
+			<unit id="org.junit" version="4.13.2.v20211018-1956"/>
+			<unit id="org.apiguardian" version="0.0.0"/>
+			<unit id="org.junit.jupiter.api" version="0.0.0"/>
+			<unit id="org.junit.jupiter.engine" version="0.0.0"/>
+			<unit id="org.junit.jupiter.migrationsupport" version="0.0.0"/>
+			<unit id="org.junit.jupiter.params" version="0.0.0"/>
+			<unit id="org.junit.platform.commons" version="0.0.0"/>
+			<unit id="org.junit.platform.engine" version="0.0.0"/>
+			<unit id="org.junit.platform.launcher" version="0.0.0"/>
+			<unit id="org.junit.platform.runner" version="0.0.0"/>
+			<unit id="org.junit.platform.suite.api" version="0.0.0"/>
+			<unit id="org.junit.platform.suite.commons" version="0.0.0"/>
+			<unit id="org.junit.vintage.engine" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="2.0.2.v20181016-2210"/>
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
+		</location>
+		<location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava-testlib</artifactId>
+					<version>30.1-jre</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
+			<instructions><![CDATA[
+Bundle-Name:           Bundle derived from maven artifact ${mvnGroupId}:${mvnArtifactId}:${mvnVersion}
+version:               ${version_cleanup;${mvnVersion}}
+Bundle-SymbolicName:   ${mvnGroupId}.${mvnArtifactId}
+Bundle-Version:        ${version}
+Import-Package:        *;resolution:=optional
+Export-Package:        *;version="${version}";-noimport:=true
+DynamicImport-Package: *
+]]></instructions>
 		</location>
 	</locations>
 </target>
