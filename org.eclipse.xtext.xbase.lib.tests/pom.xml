@@ -6,7 +6,7 @@
 		<version>2.30.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.xtext.xbase.lib.tests</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>jar</packaging>
 
 	<name>Tests for Eclipse Xbase Runtime Library</name>
 	<description>The runtime library for Xbase languages.</description>
@@ -15,8 +15,28 @@
 		<!-- That's require to let maven-surefire-plugin
 		auto detect provider org.apache.maven.surefire.junit4.JUnit4Provider-->
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-testlib</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -25,6 +45,36 @@
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>testCompile</goal>
+							<goal>xtend-test-install-debug-info</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<testOutputDirectory>${basedir}/xtend-gen</testOutputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-test-sources</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src</source>
+								<source>xtend-gen</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
