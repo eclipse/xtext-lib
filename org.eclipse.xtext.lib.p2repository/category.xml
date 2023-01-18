@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature id="org.eclipse.xtext.xbase.lib.feature" version="0.0.0">
-		<category name="xtext-lib"/>
-	</feature>
-	<feature id="org.eclipse.xtext.xbase.lib.feature.source" version="0.0.0">
-		<category name="xtext-lib"/>
-	</feature>
-	<feature id="org.eclipse.xtend.lib.feature" version="0.0.0">
-		<category name="xtext-lib"/>
-	</feature>
-	<feature id="org.eclipse.xtend.lib.feature.source" version="0.0.0">
-		<category name="xtext-lib"/>
-	</feature>
+   <bundle id="org.eclipse.xtend.lib">
+      <category name="xtext-lib"/>
+   </bundle>
+   <bundle id="org.eclipse.xtend.lib.macro">
+      <category name="xtext-lib"/>
+   </bundle>
+   <bundle id="org.eclipse.xtext.xbase.lib">
+      <category name="xtext-lib"/>
+   </bundle>
+   <bundle id="org.eclipse.xtend.lib.source">
+      <category name="xtext-lib"/>
+   </bundle>
+   <bundle id="org.eclipse.xtend.lib.macro.source">
+      <category name="xtext-lib"/>
+   </bundle>
+   <bundle id="org.eclipse.xtext.xbase.lib.source">
+      <category name="xtext-lib"/>
+   </bundle>
    <category-def name="xtext-lib" label="Xtext-lib"/>
 </site>
