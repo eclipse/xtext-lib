@@ -9,4 +9,6 @@
 
 	<artifactId>org.eclipse.xtext.xbase.lib.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
+
+	<name>Xbase Library Feature</name>
 </project>

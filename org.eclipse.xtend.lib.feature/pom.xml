@@ -9,4 +9,7 @@
 	<groupId>org.eclipse.xtend</groupId>
 	<artifactId>org.eclipse.xtend.lib.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
+
+	<name>Xtend Library Feature</name>
+
 </project>
