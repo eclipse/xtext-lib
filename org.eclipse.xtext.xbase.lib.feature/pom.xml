@@ -7,7 +7,8 @@
 		<version>2.30.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.eclipse.xtext.xbase.lib.feature</artifactId>
+	<groupId>org.eclipse.xtext.feature</groupId>
+	<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
 	<packaging>eclipse-feature</packaging>
 
 	<name>Xbase Library Feature</name>

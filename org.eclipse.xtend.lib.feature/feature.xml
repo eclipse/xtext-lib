@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtend.lib.feature"
+      id="org.eclipse.xtend.lib"
       label="%featureName"
       version="2.30.0.qualifier"
       provider-name="%providerName"
@@ -26,7 +26,7 @@ SPDX-License-Identifier: EPL-2.0
    </license>
 
    <includes
-         id="org.eclipse.xtext.xbase.lib.feature"
+         id="org.eclipse.xtext.xbase.lib"
          version="0.0.0"/>
 
    <plugin

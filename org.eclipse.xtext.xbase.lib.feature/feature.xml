@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtext.xbase.lib.feature"
+      id="org.eclipse.xtext.xbase.lib"
       label="%featureName"
       version="2.30.0.qualifier"
       provider-name="%providerName"
