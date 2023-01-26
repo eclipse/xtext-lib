@@ -5,6 +5,7 @@ fi
 
 mvn \
   clean deploy \
+  -P eclipse-sign \
   --batch-mode \
   --update-snapshots \
   -Dmaven.repo.local=.m2/repository \
