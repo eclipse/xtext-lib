@@ -169,21 +169,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<modules>
-		<module>org.eclipse.xtext.dev-bom</module>
-		<module>org.eclipse.xtext.xbase.lib</module>
-		<module>org.eclipse.xtext.xbase.lib.feature</module>
-		<module>org.eclipse.xtext.xbase.lib.gwt</module>
-		<module>org.eclipse.xtext.xbase.lib.tests</module>
-		<module>org.eclipse.xtend.lib.macro</module>
-		<module>org.eclipse.xtend.lib</module>
-		<module>org.eclipse.xtend.lib.feature</module>
-		<module>org.eclipse.xtend.lib.tests</module>
-		<module>org.eclipse.xtend.lib.gwt</module>
-		<module>org.eclipse.xtend.lib.gwt.test</module>
-		<module>org.eclipse.xtext.lib.p2repository</module>
-	</modules>
-
 	<build>
 		<pluginManagement>
 			<plugins>

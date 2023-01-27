@@ -4,12 +4,12 @@ if [ -z "$JENKINS_URL" ]; then
 fi
 
 mvn \
-  clean deploy \
+  -f org.eclipse.xtext.p2.releng \
+  clean verify \
   -P eclipse-sign \
   --batch-mode \
   --update-snapshots \
   -Dmaven.repo.local=.m2/repository \
-  -DaltDeploymentRepository=local::default::file:./build/maven-repository \
   -DJENKINS_URL=$JENKINS_URL \
   -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
   $@
