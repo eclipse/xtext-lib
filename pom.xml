@@ -248,6 +248,9 @@
 		</profile>
 		<profile>
 			<id>sonatype-oss-release</id>
+			<properties>
+				<skipTests>true</skipTests>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
