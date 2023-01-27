@@ -131,6 +131,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 
 		<build-helper-maven-plugin-version>3.2.0</build-helper-maven-plugin-version>
+		<maven-surefire-version>3.0.0-M8</maven-surefire-version>
 
 		<!--
 		This is the version of the currently released latest version that we
@@ -147,14 +148,16 @@
 		-->
 		<xtend-maven-plugin-version>2.30.0.M1</xtend-maven-plugin-version>
 
-		<!--
-		TODO: if we switch to a single Git repository, this should be changed
-		-->
-		<tycho.scmUrl>scm:git:https://github.com/eclipse/xtext-core.git</tycho.scmUrl>
-
 		<root-dir>${basedir}/..</root-dir>
 		<JENKINS_URL>https://ci.eclipse.org/xtext</JENKINS_URL>
 		<upstreamBranch>master</upstreamBranch>
+
+		<target-platform-classifier>xtext-latest</target-platform-classifier>
+
+		<!--
+		TODO: if we switch to a single Git repository, this should be changed
+		-->
+		<tycho.scmUrl>scm:git:https://github.com/eclipse/xtext-lib.git</tycho.scmUrl>
 	</properties>
 
 	<dependencyManagement>
@@ -168,6 +171,81 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<id>useJenkinsSnapshots</id>
+			<properties>
+				<!-- redefines the property for versions of artifacts not in this Git repository,
+					so that it takes the same snapshot version of this project. -->
+				<xtext-current-release-version>${project.version}</xtext-current-release-version>
+			</properties>
+			<repositories>
+				<repository>
+					<id>lsp4j-from-jenkins</id>
+					<url>${JENKINS_URL}/job/lsp4j/lastStableBuild/artifact/build/maven-repository</url>
+				</repository>
+				<repository>
+					<id>xtext-lib-from-jenkins</id>
+					<url>${JENKINS_URL}/job/xtext-lib/job/${upstreamBranch}/lastStableBuild/artifact/build/maven-repository/</url>
+				</repository>
+				<repository>
+					<id>xtext-core-from-jenkins</id>
+					<url>${JENKINS_URL}/job/xtext-core/job/${upstreamBranch}/lastStableBuild/artifact/build/maven-repository/</url>
+				</repository>
+				<repository>
+					<id>xtext-extras-from-jenkins</id>
+					<url>${JENKINS_URL}/job/xtext-extras/job/${upstreamBranch}/lastStableBuild/artifact/build/maven-repository/</url>
+				</repository>
+				<repository>
+					<id>xtext-xtend-from-jenkins</id>
+					<url>${JENKINS_URL}/job/xtext-xtend/job/${upstreamBranch}/lastStableBuild/artifact/build/maven-repository/</url>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
+			<id>eclipse-sign</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.cbi.maven.plugins</groupId>
+						<artifactId>eclipse-jarsigner-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign</id>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>p2-metadata</id>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<defaultP2Metadata>false</defaultP2Metadata>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>cbi-release</id>
+					<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
 
 	<build>
 		<pluginManagement>
@@ -183,7 +261,7 @@
 					<version>${tycho-version}</version>
 					<configuration>
 						<useProjectSettings>true</useProjectSettings>
-							<excludeResources>
+						<excludeResources>
 							<excludeResource>**/*.xtend</excludeResource>
 							<excludeResource>**/*.xtendbin</excludeResource>
 							<excludeResource>**/*._trace</excludeResource>
@@ -201,7 +279,7 @@
 					-->
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.0.0-M8</version>
+					<version>${maven-surefire-version}</version>
 					<!--
 					This is not needed now, but will be needed when switching to Tycho 4.0.0
 					see https://github.com/eclipse-tycho/tycho/blob/master/RELEASE_NOTES.md#using-integrationplugin-tests-with-eclipse-plugin-packaging
@@ -343,7 +421,7 @@
 				<configuration>
 					<target>
 						<file>
-							${project.basedir}/../xtext-lib.target
+							${project.basedir}/../${target-platform-classifier}.target
 						</file>
 					</target>
 					<environments>
@@ -390,49 +468,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>eclipse-sign</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.cbi.maven.plugins</groupId>
-						<artifactId>eclipse-jarsigner-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign</id>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<phase>package</phase>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>tycho-p2-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>p2-metadata</id>
-								<goals>
-									<goal>p2-metadata</goal>
-								</goals>
-								<phase>package</phase>
-							</execution>
-						</executions>
-						<configuration>
-							<defaultP2Metadata>false</defaultP2Metadata>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>cbi-release</id>
-					<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
-				</pluginRepository>
-			</pluginRepositories>
-		</profile>
-	</profiles>
 </project>
