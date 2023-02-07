@@ -20,6 +20,22 @@
 		<module>../org.eclipse.xtend.lib.tests</module>
 		<module>../org.eclipse.xtend.lib.gwt</module>
 		<module>../org.eclipse.xtend.lib.gwt.test</module>
-		<module>../org.eclipse.xtext.lib.p2repository</module>
 	</modules>
+
+	<!--
+	TODO:
+	This is a temporary workaround to have a single Jenkins job
+	that first runs all the tests and the creates a p2 repository
+	with signed contents. When enabling this profile, we should
+	not run the "clean" phase, so that test reports generated in the
+	previous maven build are not cleaned.
+	-->
+	<profiles>
+		<profile>
+			<id>buildP2Repository</id>
+			<modules>
+				<module>../org.eclipse.xtext.lib.p2repository</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>
