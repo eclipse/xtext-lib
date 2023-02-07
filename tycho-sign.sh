@@ -3,10 +3,13 @@ if [ -z "$JENKINS_URL" ]; then
   JENKINS_URL=https://ci.eclipse.org/xtext/
 fi
 
+# THIS SIGNS, SKIPPING TESTS
+
 mvn \
   -f org.eclipse.xtext.p2.releng \
-  clean verify \
-  -P eclipse-sign \
+  package \
+  -P useJenkinsSnapshots \
+  -P eclipse-sign,buildP2Repository \
   --batch-mode \
   --update-snapshots \
   -Dmaven.repo.local=.m2/repository \
