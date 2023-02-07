@@ -46,7 +46,18 @@
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 				<executions>
+					<!-- disable the execution for main source compile, to avoid
+						generated sources in xtend-gen to be considered by Maven
+						as main sources, instead of test sources. -->
 					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>xtend-install-debug-info</goal>
+						</goals>
+						<phase>none</phase>
+					</execution>
+					<execution>
+						<id>test-compile</id>
 						<goals>
 							<goal>testCompile</goal>
 							<goal>xtend-test-install-debug-info</goal>
