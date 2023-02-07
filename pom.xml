@@ -133,6 +133,14 @@
 		<maven-surefire-version>3.0.0-M8</maven-surefire-version>
 
 		<!--
+		This assumes that the child project has the same version as the parent.
+		This is not the case only for some special cases like org.eclipse.xtext.logging
+		and org.eclipse.emf.mwe2.language.sdk.dummy: in those projects we can redefine
+		this property with ${project.parent.version}.
+		-->
+		<xtext-dev-bom-version>${project.version}</xtext-dev-bom-version>
+
+		<!--
 		This is the version of the currently released latest version of the xtend-maven-plugin that we
 		use during the Maven builds for processing Xtend files.
 		-->
@@ -155,12 +163,33 @@
 			<dependency>
 				<groupId>org.eclipse.xtext</groupId>
 				<artifactId>xtext-dev-bom</artifactId>
-				<version>${project.version}</version>
+				<!--
+				TODO: update it
+				The dev BOM should be in the same Git repository of this one
+				-->
+				<version>${xtext-dev-bom-version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+		<!-- Sonatype snapshots are the default for Xtext dependencies
+			of other Git repositories. Sonatype snapshots are disabled
+			when using the "useJenkinsSnapshots" profile. -->
+		<repository>
+			<id>sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
 
 	<profiles>
 		<profile>
@@ -201,10 +230,26 @@
 					<id>xtext-xtend-from-jenkins</id>
 					<url>${JENKINS_URL}/job/xtext-xtend/job/${upstreamBranch}/lastStableBuild/artifact/build/maven-repository/</url>
 				</repository>
+				<!-- Disable sonatype snapshots -->
+				<repository>
+					<id>sonatype-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</repository>
 			</repositories>
 		</profile>
 		<profile>
 			<id>eclipse-sign</id>
+			<properties>
+				<!-- don't run tests while signing, to avoid failures of the shape:
+					"signer information does not match signer information of other classes in the same package" -->
+				<skipTests>true</skipTests>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
