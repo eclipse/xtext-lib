@@ -523,6 +523,25 @@
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
+				<!-- Explicitly bind it to "prepare-package" (instead of the default "package")
+					and before tycho-source-plugin: for pure Maven projects this will generate
+					the JAR with sources, while tycho-source-plugin will no nothing; for
+					bundles, tycho-source-plugin will overwrite the JAR with sources generated
+					by maven-source-plugin. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+						<phase>prepare-package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-source-plugin</artifactId>
 				<version>${tycho-version}</version>
