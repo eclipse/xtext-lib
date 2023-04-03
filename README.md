@@ -1,5 +1,11 @@
 # Eclipse Xtext Library
 
+## Notice
+
+The content of this repository (`xtext-lib`) has been moved to the [Xtext Monorepo](https://github.com/eclipse/xtext/). Please refer to that repository to find the code, create issues or file pull requests.
+
+## About
+
 This repository contains the standard library for [Xbase](https://www.eclipse.org/Xtext/documentation/305_xbase.html) languages such as [Xtend](http://xtend-lang.org).
 
 ## How To Build
